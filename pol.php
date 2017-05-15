@@ -1,4 +1,10 @@
 <?php
+
+/*Todo
+Iterate over multiple orders to generate multiple PDFs at once
+Clean up display - title preceeding :, total needs two decimal places
+*/
+
 require_once('../TCPDF/tcpdf.php');
 require_once('../TCPDF/examples/tcpdf_include.php');
 require('config.php');
@@ -44,9 +50,9 @@ $total = $xml->fund_distributions->fund_distribution->amount->sum[0];
 	$html = "<p>PO Number: " . $PO_number . "<br />";
 	$html = $html . "Order Date: " . $odate . "</p>";
 	$html = $html . "<p>Vendor Name: " . $vendor . "</p>";
-	$html = $html . "<p>: " . $title . ". " . $author . ". " . $pubplace . ". " . $pubyear . ".</p>";
+	$html = $html . "<p>: " . $title . ". " . $author . ". " . $pubplace . ". " . $pubyear . "</p>";
 	$html = $html . "<p>1 copy; " . $vennote . ".</p>";
-	$html = $html . "<p>Total: $" . $total . ".</p>";
+	$html = $html . "<p style=\"text-align: right\">Total: $" . $total . ".</p>";
 	$html = $html . $ship;
 	$html = $html . $certify;
 	$html = $html . "<p>Certifying Officer: ________________________________________________________ </p>";

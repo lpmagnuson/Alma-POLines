@@ -2,3 +2,4 @@ composer.phar
 /vendor/
 config.php
 /tests/
+.DS_Store

@@ -4,6 +4,13 @@ require('vendor/autoload.php');
 require_once('../TCPDF/tcpdf.php');
 require('config.php');
 
+/*Todo
+Pull back POs in reverse order (most recent first)
+Filter by vendor
+Enter specific POL
+*/
+
+
 
 //pull back all PO lines to enable selection
 use Guzzle\Http\Client;
@@ -16,8 +23,9 @@ $response = $client->get($url);
         echo "<h1>Choose PO Lines to Print</h1>";
         echo "<form action=\"pol.php\" method=\"post\">";
           foreach ($xmlObj->po_line as $pol) {
-            $polnum = $pol->number;    
-            echo "<input type=\"checkbox\" name=\"formPO\" value=\"". $polnum . "\"/>" . $polnum . "<br />";
+            $polnum = $pol->number; 
+            $vendor = $pol->vendor;   
+            echo "<input type=\"checkbox\" name=\"formPO\" value=\"". $polnum . "\"/>" . $polnum . " | Vendor: " . $vendor . "<br />";
             }
         echo "<input type=\"submit\" name=\"formSubmit\" value=\"Submit\" /> </form>";
 
